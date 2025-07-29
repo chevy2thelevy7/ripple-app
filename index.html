@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Multicolor Touch Ripple</title>
+  <title>Sparkle Touch Ripple</title>
   <style>
     body {
       margin: 0;
@@ -14,23 +14,20 @@
       touch-action: manipulation;
     }
 
-    .ripple {
+    .sparkle {
       position: absolute;
-      border-radius: 50%;
+      font-size: 30px;
+      animation: sparkleEffect 0.8s ease-out forwards;
       pointer-events: none;
-      width: 100px;
-      height: 100px;
-      animation: rippleEffect 0.6s ease-out forwards;
-      opacity: 0.8;
     }
 
-    @keyframes rippleEffect {
-      from {
-        transform: scale(0.2);
-        opacity: 0.8;
+    @keyframes sparkleEffect {
+      0% {
+        transform: scale(0.5);
+        opacity: 1;
       }
-      to {
-        transform: scale(3);
+      100% {
+        transform: scale(2);
         opacity: 0;
       }
     }
@@ -38,18 +35,17 @@
 </head>
 <body>
   <script>
-    const colors = ['#FF3CAC', '#784BA0', '#2B86C5', '#00F5A0', '#FF6B6B', '#FFD93D'];
+    const sparkles = ['✨', '🌟', '💫', '⭐️'];
 
     document.body.addEventListener('touchstart', function(e) {
       for (let touch of e.touches) {
-        const ripple = document.createElement('div');
-        ripple.classList.add('ripple');
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        ripple.style.background = color;
-        ripple.style.left = (touch.clientX - 50) + 'px';
-        ripple.style.top = (touch.clientY - 50) + 'px';
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.innerText = sparkles[Math.floor(Math.random() * sparkles.length)];
+        sparkle.style.left = (touch.clientX - 15) + 'px';
+        sparkle.style.top = (touch.clientY - 15) + 'px';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 800);
       }
     });
   </script>
